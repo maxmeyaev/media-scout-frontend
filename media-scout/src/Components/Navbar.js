@@ -13,17 +13,13 @@ import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-// import MoreIcon from '@mui/icons-material/MoreVert';
-// import AppBar from '@mui/material/AppBar';
+// import Container from '@mui/material/Container';
+// import Grid from '@mui/material/Grid';
+// import Card from '@mui/material/Card';
+// import CardActions from '@mui/material/CardActions';
+// import CardContent from '@mui/material/CardContent';
 // import Button from '@mui/material/Button';
-// import CssBaseline from '@mui/material/CssBaseline';
-// import { styled, alpha } from '@mui/material/styles';
-// // import Grid from '@mui/material/Grid';
-// // import StarIcon from '@mui/icons-material/StarBorder';
-// import InputBase from '@mui/material/InputBase';
-// import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-// import GlobalStyles from '@mui/material/GlobalStyles';
+// import CardMedia from '@mui/material/CardMedia';
 
 const theme = createTheme({
   spacing: 8,
@@ -76,6 +72,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     }
   }
 }));
+// const cards = [1, 2, 3, 4, 5, 7, 8, 9];
 
 export default function PrimarySearchAppBar () {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -164,6 +161,41 @@ export default function PrimarySearchAppBar () {
     </ThemeProvider>
   );
 }
+// {/* <Container sx={{ py: 8 }} maxWidth="md">
+// {/* End hero unit */}
+// <Grid container spacing={4}>
+//   {cards.map((card) => (
+//     <Grid item key={card} xs={12} sm={6} md={4}>
+//       <Card
+//         sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+//       >
+//         <CardMedia
+//           component="img"
+//           sx={{
+//             // 16:9
+//             pt: '56.25%'
+//           }}
+//           image="https://source.unsplash.com/random"
+//           alt="random"
+//         />
+//         <CardContent sx={{ flexGrow: 1 }}>
+//           <Typography gutterBottom variant="h5" component="h2">
+//               Heading
+//           </Typography>
+//           <Typography>
+//               This is a media card. You can use this section to describe the
+//               content.
+//           </Typography>
+//         </CardContent>
+//         <CardActions>
+//           <Button size="small">View</Button>
+//           <Button size="small">Edit</Button>
+//         </CardActions>
+//       </Card>
+//     </Grid>
+//   ))}
+// </Grid>
+// </Container> */}
 // function Navbar () {
 //   return (
 //     <React.Fragment>
