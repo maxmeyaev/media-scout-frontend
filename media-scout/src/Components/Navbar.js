@@ -81,6 +81,9 @@ export default function PrimarySearchAppBar () {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
 
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const isHamburgerOpen = Boolean(anchorEl2);
+
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -90,26 +93,26 @@ export default function PrimarySearchAppBar () {
   };
 
   const handleHamburgerMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl2(event.currentTarget);
   };
 
   const handleHamburgerMenuClose = () => {
-    setAnchorEl(null);
+    setAnchorEl2(null);
   };
   const menuId = 'primary-search-account-menu';
   const hamburgerMenuId = 'primary-search-hamburger-menu';
 
   const renderHamburgerMenu = (
     <Menu
-      anchorEl={anchorEl}
+      anchorEl={anchorEl2}
       id={hamburgerMenuId}
       keepMounted
-      open={isMenuOpen && anchorEl !== 'profile'}
+      open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>TV show</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Movie</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Kids</MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>TV show</MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>Movie</MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>Kids</MenuItem>
     </Menu>
   );
   const renderProfileMenu = (
@@ -117,7 +120,7 @@ export default function PrimarySearchAppBar () {
       anchorEl={anchorEl}
       id={menuId}
       keepMounted
-      open={isMenuOpen && anchorEl === 'profile'}
+      open={isMenuOpen}
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
