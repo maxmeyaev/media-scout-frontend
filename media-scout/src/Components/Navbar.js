@@ -12,6 +12,7 @@ import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 // import MoreIcon from '@mui/icons-material/MoreVert';
 // import AppBar from '@mui/material/AppBar';
 // import Button from '@mui/material/Button';
@@ -106,8 +107,8 @@ export default function PrimarySearchAppBar () {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem><Link to="/profile">Profile</Link></MenuItem>
+      <MenuItem>My account</MenuItem>
     </Menu>
   );
   return (
