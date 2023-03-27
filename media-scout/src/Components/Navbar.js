@@ -72,7 +72,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     }
   }
 }));
-// const cards = [1, 2, 3, 4, 5, 7, 8, 9];
 
 export default function PrimarySearchAppBar () {
   const [anchorEl, setAnchorEl] = React.useState(null);
