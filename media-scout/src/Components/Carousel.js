@@ -23,6 +23,8 @@
 // export default Example;
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+// import Stack from '@mui/material/Stack';
 import '../index.css';
 // import autoBind from 'auto-bind';
 
@@ -60,7 +62,6 @@ function Banner (props) {
       </CardContent>
     </Grid>
   );
-
   for (let i = 0; i < mediaLength; i++) {
     const item = props.item.Items[i];
 
@@ -68,6 +69,7 @@ function Banner (props) {
       <Grid item xs={12 / totalItems} key={item.Name}>
         <CardMedia className="Media" image={item.Image} title={item.Name}>
           <Typography className="MediaCaption">{item.Name}</Typography>
+          <StarHalfIcon style={{ height: '30px' }}/>
         </CardMedia>
       </Grid>
     );
@@ -199,8 +201,7 @@ class BannerExample extends React.Component {
 
   render () {
     return (
-      <div style={{ marginTop: '50px', color: '' }}>
-
+      <div style={{ marginTop: '10px' }}>
         <Carousel
           className="Example"
           autoPlay={this.state.autoPlay}

@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import Carousel from './Carousel';
 // eslint-disable-next-line no-unused-vars
 import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -156,6 +157,9 @@ export default function PrimarySearchAppBar () {
           </Toolbar>
         </AppBar>
         {renderMenu}
+      </Box>
+      <Box>
+        <Carousel />
       </Box>
     </ThemeProvider>
   );

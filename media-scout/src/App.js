@@ -1,12 +1,13 @@
 import React from 'react';
 import Navbar from './Components/Navbar';
-import Carousel from './Components/Carousel';
+import { Route, Routes } from 'react-router-dom';
+import Login from './Components/Login';
 
 export default function App () {
   return (
-    <>
-      <Navbar />
-      <Carousel />
-    </>
+    <Routes>
+      <Route path='/' element={ <Navbar />} />
+      <Route path='/login' element={ <Login />} />
+    </Routes>
   );
 }
