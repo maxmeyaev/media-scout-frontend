@@ -13,6 +13,7 @@ import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import { Link } from 'react-router-dom';
 // import MoreIcon from '@mui/icons-material/MoreVert';
 // import AppBar from '@mui/material/AppBar';
 // import Button from '@mui/material/Button';
@@ -24,7 +25,6 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 // import Toolbar from '@mui/material/Toolbar';
 // import Typography from '@mui/material/Typography';
 // import GlobalStyles from '@mui/material/GlobalStyles';
-
 const theme = createTheme({
   spacing: 8,
   palette: {
@@ -110,9 +110,10 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}>TV show</MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}>Movie</MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}>Kids</MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/TVshows">TV shows</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/Movie">Movies</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/Kids">Kids</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/RecentlyAdd">Recently Add</Link></MenuItem>
     </Menu>
   );
   const renderProfileMenu = (
