@@ -1,5 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 
-export default function Movie () {
-  return <h1>Movie page</h1>;
-}
+const Movie = () => {
+  return (
+    <div>Movie list</div>
+  );
+};
+
+export default Movie;
