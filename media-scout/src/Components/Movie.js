@@ -1,9 +1,5 @@
 import React from 'react';
 
-const Movie = () => {
-  return (
-    <div>Movie list</div>
-  );
+export default function Movie () {
+  return <h1> Movie</h1>;
 };
-
-export default Movie;

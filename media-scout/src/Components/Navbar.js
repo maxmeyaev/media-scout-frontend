@@ -110,10 +110,10 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/TVshows">TV shows</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/Movie">Movies</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/Kids">Kids</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to=".Components/RecentlyAdd">Recently Add</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./TVshows">TV shows</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./Movie">Movies</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./Kids">Kids</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./RecentlyAdd">Recently Added</Link></MenuItem>
     </Menu>
   );
   const renderProfileMenu = (

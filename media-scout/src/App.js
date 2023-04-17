@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import Home from './Components/Home';
-import Kids from '../src/Components/Kids';
+import Kids from './Components/Kids';
 import Movie from './Components/Movie';
 import TVshows from './Components/TVshows';
 import RecentlyAdd from './Components/RecentlyAdd';
