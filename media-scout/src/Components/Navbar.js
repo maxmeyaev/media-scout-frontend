@@ -14,13 +14,6 @@ import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-// import Container from '@mui/material/Container';
-// import Grid from '@mui/material/Grid';
-// import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
-// import CardContent from '@mui/material/CardContent';
-// import Button from '@mui/material/Button';
-// import CardMedia from '@mui/material/CardMedia';
 
 const theme = createTheme({
   spacing: 8,

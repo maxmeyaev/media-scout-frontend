@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     'indent': ['error', 2],
     'semi': ['error', 'always'],
+    'react/prop-types': 'off',
     'react/self-closing-comp': [
       'error', {
         component: true,
