@@ -13,13 +13,14 @@ const img_size_500 = 'https://image.tmdb.org/t/p/w500';
 // eslint-disable-next-line no-unused-vars
 const img_size_300 = 'https://image.tmdb.org/t/p/w300';
 
-const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType }) => {
+const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, video }) => {
   return (
     <Card sx={{
       display: 'flex',
       width: 300,
       height: 'auto',
       flexDirection: 'column',
+      padding: '10px',
       position: 'relative'
     }}>
       <CardActionArea>
@@ -43,6 +44,9 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType }) =>
           </Typography>
           <Typography variant='h6'>
             {mediaType}
+          </Typography>
+          <Typography variant='h6'>
+            {video}
           </Typography>
         </CardContent>
       </CardActionArea>

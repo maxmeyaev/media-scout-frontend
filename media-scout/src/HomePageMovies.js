@@ -27,6 +27,7 @@ const HomePageMovies = () => {
           voteAvg={c.vote_average}
           date={c.first_air_date || c.release_date}
           mediaType={c.media_type}
+          video={c.video}
         />))
       }
     </Box>
