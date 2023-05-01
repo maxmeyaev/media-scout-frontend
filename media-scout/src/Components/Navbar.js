@@ -151,7 +151,10 @@ export default function PrimarySearchAppBar () {
             <Button
               href='/'
               variant='text'
+              disableElevation
+              disableRipple
               color='inherit'
+              style={{ backgroundColor: 'transparent' }}
             >
               Media Scout
             </Button>

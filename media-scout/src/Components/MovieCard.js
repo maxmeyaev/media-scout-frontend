@@ -20,7 +20,6 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
     <Card sx={{
       display: 'flex',
       width: 300,
-      height: '50vh',
       flexDirection: 'column',
       padding: '10px',
       position: 'relative'
