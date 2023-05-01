@@ -5,8 +5,10 @@ import CardContent from '@mui/material/CardContent';
 // import Box from '@mui/material/Box';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
 // eslint-disable-next-line no-unused-vars
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button, CardActionArea, CardActions, autocompleteClasses } from '@mui/material';
 
 // eslint-disable-next-line no-unused-vars
 const img_size_500 = 'https://image.tmdb.org/t/p/w500';
@@ -18,7 +20,7 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
     <Card sx={{
       display: 'flex',
       width: 300,
-      height: 'auto',
+      height: '50vh',
       flexDirection: 'column',
       padding: '10px',
       position: 'relative'
@@ -36,9 +38,11 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
           <Typography variant='body2'>
             {overview}
           </Typography>
-          <Typography variant='h6'>
-            {voteAvg}
-          </Typography>
+          <Stack>
+            <Rating>
+              {voteAvg}
+            </Rating>
+          </Stack>
           <Typography variant='h6'>
             {date}
           </Typography>
