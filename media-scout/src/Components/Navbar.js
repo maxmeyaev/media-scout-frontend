@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+// eslint-disable-next-line no-unused-vars
 import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
@@ -24,7 +25,6 @@ import { Link } from 'react-router-dom';
 // import Toolbar from '@mui/material/Toolbar';
 // import Typography from '@mui/material/Typography';
 // import GlobalStyles from '@mui/material/GlobalStyles';
-
 const theme = createTheme({
   spacing: 8,
   palette: {
@@ -79,36 +79,53 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar () {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const isMenuOpen = Boolean(anchorEl);
 
-  const handleProfileMenuOpen = (event) => {
+  const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const isHamburgerOpen = Boolean(anchorEl2);
+
+  const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const handleHamburgerMenuOpen = (event) => {
+    setAnchorEl2(event.currentTarget);
+  };
+
+  const handleHamburgerMenuClose = () => {
+    setAnchorEl2(null);
+  };
   const menuId = 'primary-search-account-menu';
-  // Account menu button
-  const renderMenu = (
+  const hamburgerMenuId = 'primary-search-hamburger-menu';
+
+  const renderHamburgerMenu = (
+    <Menu
+      anchorEl={anchorEl2}
+      id={hamburgerMenuId}
+      keepMounted
+      open={isHamburgerOpen}
+      onClose={handleHamburgerMenuClose}
+    >
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./TVshows">TV shows</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./Movie">Movies</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./Kids">Kids</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./RecentlyAdd">Recently Added</Link></MenuItem>
+    </Menu>
+  );
+  const renderProfileMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right'
-      }}
       id={menuId}
       keepMounted
-      transformOrigin={{
-        vertical: 'top',
-        horizontal: 'right'
-      }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem><Link to="/profile">Profile</Link></MenuItem>
-      <MenuItem>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="./profile">Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
   return (
@@ -116,16 +133,20 @@ export default function PrimarySearchAppBar () {
       <Box sx={{ display: 'grid' }}>
         <AppBar position="static">
           <Toolbar>
-            {/* Hamburger button icon  */}
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
+            {anchorEl !== 'profile'
+              ? (
+                <IconButton
+                  onClick={handleHamburgerMenuOpen}
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="open drawer"
+                  sx={{ mr: 2 }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              )
+              : null}
             <Typography
               variant="h6"
               noWrap
@@ -151,7 +172,7 @@ export default function PrimarySearchAppBar () {
                 aria-label="account of current user"
                 aria-controls={menuId}
                 aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
+                onClick={handleMenuOpen}
                 color="inherit"
               >
                 <AccountCircle />
@@ -159,7 +180,8 @@ export default function PrimarySearchAppBar () {
             </Box>
           </Toolbar>
         </AppBar>
-        {renderMenu}
+        {renderHamburgerMenu}
+        {renderProfileMenu}
       </Box>
     </ThemeProvider>
   );
