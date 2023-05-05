@@ -4,9 +4,10 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 // eslint-disable-next-line no-unused-vars
 import { spacing } from '@mui/system';
@@ -147,14 +148,16 @@ export default function PrimarySearchAppBar () {
                 </IconButton>
               )
               : null}
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
+            <Button
+              href='/'
+              variant='text'
+              disableElevation
+              disableRipple
+              color='inherit'
+              style={{ backgroundColor: 'transparent' }}
             >
               Media Scout
-            </Typography>
+            </Button>
             <Box sx={{ flexGrow: 1 }} />
             <Search>
               <SearchIconWrapper>
@@ -186,30 +189,3 @@ export default function PrimarySearchAppBar () {
     </ThemeProvider>
   );
 }
-// function Navbar () {
-//   return (
-//     <React.Fragment>
-//       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-//       <CssBaseline />
-//       <AppBar
-//         position="static"
-//         color="default"
-//         elevation={0}
-//         sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-//       >
-//         <Toolbar sx={{ flexWrap: 'wrap' }}>
-//           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-//             Media Scout
-//           </Typography>
-//           <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-//             Login
-//           </Button>
-//         </Toolbar>
-//       </AppBar>
-//     </React.Fragment >
-//   );
-// }
-
-// export default function createNavbar () {
-//   return <Navbar />;
-// }
