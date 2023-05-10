@@ -3,6 +3,7 @@ import { styled, alpha, createTheme, ThemeProvider } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
+import { useState, useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
 // import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
@@ -15,17 +16,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
-// import MoreIcon from '@mui/icons-material/MoreVert';
-// import AppBar from '@mui/material/AppBar';
-// import Button from '@mui/material/Button';
-// import CssBaseline from '@mui/material/CssBaseline';
-// import { styled, alpha } from '@mui/material/styles';
-// // import Grid from '@mui/material/Grid';
-// // import StarIcon from '@mui/icons-material/StarBorder';
-// import InputBase from '@mui/material/InputBase';
-// import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
-// import GlobalStyles from '@mui/material/GlobalStyles';
 const theme = createTheme({
   spacing: 8,
   palette: {
@@ -79,6 +69,53 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar () {
+  // eslint-disable-next-line no-unused-vars
+  const [searchText, setSearchText] = useState('');
+  // eslint-disable-next-line no-unused-vars
+  const [movies, setMovies] = useState([]);
+  const fetchMovies = async (searchText) => {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`;
+    const response = await fetch(url);
+    const resJson = await response.json();
+
+    if (resJson.Search) {
+      setMovies(resJson.Search);
+    }
+  };
+  useEffect(() => {
+    fetchMovies(searchText);
+  }, [searchText]);
+
+  // const searchMovie = async (ev) => {
+  //   if (ev) {
+  //     ev.preventDefault();
+  //   }
+  //   const { data } = await axios.get((`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`));
+  //   console.log(data.results[0]);
+  //   setMovies(data.results);
+  //   if (data.results.length) {
+  //     await searchMovie(data.results[0].id);
+  //   };
+  // };
+  // useEffect(() => {
+  //   searchMovie();
+  // }, []);
+
+  // const getMovieSearch = (e) => {
+  //   e.preventDefault();
+  //   setSearchText(e.target.value);
+
+  //   fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${e.target.value}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (!data.errors) {
+  //         setResults(data.results);
+  //       } else {
+  //         setResults([]);
+  //       }
+  //     });
+  // };
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
 

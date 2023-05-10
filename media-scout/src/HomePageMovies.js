@@ -10,14 +10,13 @@ const HomePageMovies = () => {
   const fetchHomePageMovies = async () => {
     const { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`);
     setContent(data.results);
-    console.log(data);
   };
   useEffect(() => {
     fetchHomePageMovies();
   }, []);
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', padding: '20px' }}>
       {content && content.map((c) =>
         (<MovieCard
           key={c.id}
