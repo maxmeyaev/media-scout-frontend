@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './Components/Navbar';
 import Kids from './Components/Kids';
 import HomePageMovies from './HomePageMovies';
+import Details from './Components/Details/Details';
 import Movie from './Components/Movie';
 import TVshows from './Components/TVshows';
 import RecentlyAdd from './Components/RecentlyAdd';
@@ -18,6 +19,7 @@ export default function App () {
         <Route path='/login' element={ <Login />} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path='/kids' element={ <Kids />} />
+        <Route path='/movies/:id' element={ <Details />}/>
         <Route path='/movie' element={ <Movie />} />
         <Route path='/tvshows' element={ <TVshows />} />
         <Route path='/recentlyAdd' element={ <RecentlyAdd />} />

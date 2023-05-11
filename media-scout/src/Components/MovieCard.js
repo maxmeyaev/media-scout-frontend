@@ -3,6 +3,7 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 // import Box from '@mui/material/Box';
+import { Link } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
@@ -29,44 +30,51 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
       backgroundColor: '#121212',
       padding: '10px',
       marginTop: '20px',
-      position: 'relative'
+      position: 'relative',
+      transition: 'transform 0.15s ease-in-out',
+      '&:hover': {
+        boxShadow: 20,
+        transform: 'scale3d(1.05, 1.05, 1)'
+      }
     }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          image={`${img_size_500}/${poster}`}
-          alt='poster'
-        />
-        <CardContent>
-          <Typography variant="h6" display="block" gutterBottom color={'white'}>
-            {title}
-          </Typography>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Typography variant='subtitle' color={'white'}>
-              Date: {date}
+      <Link style={{ textDecoration: 'none' }} to={`/movies/${id}`}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            image={`${img_size_500}/${poster}`}
+            alt='poster'
+          />
+          <CardContent>
+            <Typography variant="h6" display="block" gutterBottom color={'white'}>
+              {title}
             </Typography>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography variant='subtitle' color={'white'} paddingRight={'12px'}>
-                {roundVote(voteAvg)}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography variant='subtitle' color={'white'}>
+              Date: {date}
               </Typography>
-              <Rating
-                value={4.5}
-                readOnly
-                precision={0.5}
-                size='small'
-                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
-              />
-            </div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <Typography variant='subtitle' color={'white'} paddingRight={'12px'}>
+                  {roundVote(voteAvg)}
+                </Typography>
+                <Rating
+                  value={4.5}
+                  readOnly
+                  precision={0.5}
+                  size='small'
+                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
+                />
+              </div>
 
-            {/* <Typography variant='subtitle' color={'white'}>
+              {/* <Typography variant='subtitle' color={'white'}>
               {labels[voteAvg]}
             </Typography> */}
-            {/* <Typography color={'dark'} variant='subtitle1' style={{ backgroundColor: 'yellow', borderRadius: '50%', width: '3em', height: '2em', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
+              {/* <Typography color={'dark'} variant='subtitle1' style={{ backgroundColor: 'yellow', borderRadius: '50%', width: '3em', height: '2em', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
               {voteAvg}
             </Typography> */}
-          </div>
-        </CardContent>
-      </CardActionArea>
+            </div>
+          </CardContent>
+        </CardActionArea>
+      </Link>
     </Card>
   );
 };
