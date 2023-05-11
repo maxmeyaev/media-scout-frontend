@@ -1,21 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import MovieCard from './Components/MovieCard';
 import Box from '@mui/material/Box';
-import axios from 'axios';
 
-const HomePageMovies = () => {
+const HomePageMovies = ({ content }) => {
   // eslint-disable-next-line no-unused-vars
-  const [content, setContent] = useState([]);
-
-  const fetchHomePageMovies = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`);
-    setContent(data.results);
-    console.log(data);
-  };
-  useEffect(() => {
-    fetchHomePageMovies();
-  }, []);
-
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       {content && content.map((c) =>
