@@ -9,7 +9,7 @@ import RecentlyAdd from './Components/RecentlyAdd';
 import Profile from './Components/Profile';
 import Login from './Login';
 import Discussion from './Components/Discussion';
-import Drama from './Components/Drama';
+import MovieByGenre from './Components/MovieByGenre';
 import axios from 'axios';
 import Register from './Register';
 import MyAccount from './Myaccount';
@@ -39,12 +39,11 @@ export default function App () {
     fetchHomePageMovies();
     fetchGenre();
   }, []);
-  if (genres) {
-    const drama = content.filter((movie) => {
-      return movie.genre_ids.includes(genres.horror);
+  const filtermovies = (genre, allmovies) => {
+    return allmovies.filter((movie) => {
+      return movie.genre_ids.includes(genres[genre]);
     });
-    console.log('drama', drama);
-  }
+  };
   // console.log(genres);
   return (
     <div className='app'>
@@ -54,10 +53,10 @@ export default function App () {
         <Route path='/login' element={ <Login />} />
         <Route path='/register' element={ <Register/>} />
         <Route path="/profile" element={<Profile/>}/>
-        <Route path='/drama' element={ <Drama />} />
+        <Route path='/movies/:genre' element={ <MovieByGenre content = {content} filtermovies = {filtermovies} />} />
         <Route path='/movie' element={ <Movie />} />
         <Route path='/tvshows' element={ <TVshows />} />
-        <Route path='/recentlyAdd' element={ <RecentlyAdd />} />
+        <Route path='/recentlyadd' element={ <RecentlyAdd />} />
         <Route path='/discussion' element={ <Discussion />} />
         <Route path="/myaccount" element={<MyAccount/>}/>
       </Routes>

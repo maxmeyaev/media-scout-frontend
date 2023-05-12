@@ -15,8 +15,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import axios from 'axios';
 import { setUserSession } from './service/AuthService';
-import { useNavigate } from 'react-router-dom';
-
 function Copyright (props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -33,7 +31,6 @@ const loginAPIUrl = 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod
 const theme = createTheme();
 
 export default function SignIn (props) {
-  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMassage] = useState(null);
@@ -57,9 +54,8 @@ export default function SignIn (props) {
 
     axios.post(loginAPIUrl, requestBody, requestConfig).then((response) => {
       setUserSession(response.data.user, response.data.token);
-      navigate('/myaccount');
+      props.history.push('/myaccount');
     }).catch((error) => {
-      console.log(error);
       if (error.response.status === 401 || error.response.status === 403) {
         setErrorMassage(error.response.data.message);
       } else {
@@ -84,7 +80,7 @@ export default function SignIn (props) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-           Sign in
+           Sign up
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField

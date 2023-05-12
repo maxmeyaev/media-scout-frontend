@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Movies from './Components/Movies';
 import { resetUserSession } from './service/AuthService';
-// import { useNavigate } from 'react-router-dom';
 
 const Profile = (props) => {
-  const navigate = useNavigate();
-  //  const user = getUser();
-  //  const name = user !== 'undefined' && user ? user.name : '';
+//   const user = getUser();
+//   const name = user !== 'undefined' && user ? user.name : '';
   const logoutHandler = () => {
+    // const navigate = useNavigate();
     resetUserSession();
-    navigate('/login');
+    Navigate('/login');
   };
   return (
     <div className='profile-wrapper'>
