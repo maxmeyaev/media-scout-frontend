@@ -18,6 +18,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import MovieCard from './MovieCard';
+// import HomePageMovies from '../HomePageMovies';
 
 const theme = createTheme({
   spacing: 8,
@@ -238,21 +239,28 @@ export default function PrimarySearchAppBar () {
         {renderHamburgerMenu}
         {renderProfileMenu}
       </Box>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', padding: '20px' }}>
-        {movies && movies.map((c) =>
-          (<MovieCard
-            key={c.id}
-            id={c.id}
-            poster={c.poster_path}
-            title={c.title || c.name}
-            overview={c.overview}
-            voteAvg={c.vote_average}
-            date={c.first_air_date || c.release_date}
-            mediaType={c.media_type}
-            video={c.video}
-          />))
-        }
-      </Box>
+      <div>
+        {searchText.length > 0// eslint-disable-next-line multiline-ternary
+          ? (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', padding: '20px' }}>
+              {movies && movies.map((c) => (
+                <MovieCard
+                  key={c.id}
+                  id={c.id}
+                  poster={c.poster_path}
+                  title={c.title || c.name}
+                  overview={c.overview}
+                  voteAvg={c.vote_average}
+                  date={c.first_air_date || c.release_date}
+                  mediaType={c.media_type}
+                  video={c.video}
+                />
+              ))}
+            </Box>
+          ) : (
+            null
+          )}
+      </div>
     </ThemeProvider>
-  );
+  ); // return
 }
