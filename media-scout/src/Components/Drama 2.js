@@ -3,12 +3,12 @@ import MovieCard from './MovieCard';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 
-const TVshows = () => {
+const Drama = () => {
   // eslint-disable-next-line no-unused-vars
   const [content, setContent] = useState([]);
 
   const fetchHomePageMovies = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`);
+    const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`);
     setContent(data.results);
     console.log(data);
   };
@@ -27,12 +27,13 @@ const TVshows = () => {
           overview={c.overview}
           voteAvg={c.vote_average}
           date={c.first_air_date || c.release_date}
-          mediaType={c.media_type ? 'tv' : '' }
+          mediaType={c.media_type}
           video={c.video}
+          genres={c.genres ? c.genres.map((genre) => genre.name).join(',') : '' }
         />))
       }
     </Box>
   );
 };
 
-export default TVshows;
+export default Drama;
