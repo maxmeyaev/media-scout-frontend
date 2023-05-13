@@ -1,12 +1,15 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Card, CardActionArea, CardMedia, CardContent, Box, Typography, Paper, Container } from '@mui/material';
+import { useParams, Link } from 'react-router-dom';
+import { Card, CardActionArea, CardMedia, CardContent, Box, Typography, Paper, Container, Rating } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
+import axios from 'axios';
 
 // eslint-disable-next-line no-unused-vars
 const img500 = 'https://image.tmdb.org/t/p/w500';
 
 export default function Details () {
+  // Movie details fetch
   // eslint-disable-next-line no-unused-vars
   const [movieDetail, setMovieDetail] = useState({});
   const movieId = useParams();
@@ -14,27 +17,24 @@ export default function Details () {
     const getMovie = async () => {
       const result = await fetch(`https://api.themoviedb.org/3/movie/${movieId.id}?api_key=${process.env.REACT_APP_API_KEY}`);
       const data = await result.json();
-      console.log(data);
       setMovieDetail(data);
     };
     getMovie();
   }, []);
-  // eslint-disable-next-line no-unused-vars
-  const { title, id, poster_path, overview, vote_average, date, mediaType, video } = movieDetail;
 
-  const [movieCast, setMovieCast] = useState({});
+  const { title, poster_path, overview, vote_average, release_date } = movieDetail;
+  // Movie cast fetch
+  const [movieCast, setMovieCast] = useState([]);
+  const fetchCast = async () => {
+    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${movieId.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits`);
+    console.log(data.credits.cast);
+    setMovieCast(data.credits.cast.slice(0, 5));
+  };
   useEffect(() => {
-    const getCast = async () => {
-      const cast = await fetch(`https://api.themoviedb.org/3/movie/${movieId.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits`);
-      const cast_data = await cast.json();
-      setMovieCast(cast_data);
-      console.log(cast_data);
-    };
-    getCast();
+    fetchCast();
   }, []);
-  const { adult, cast } = movieCast;
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Card sx={{
         display: 'flex',
         padding: '20px'
@@ -48,9 +48,24 @@ export default function Details () {
                 alt='poster'
                 sx={{ width: '20vw' }}
               />
-              <Typography variant='h6'>
-                {Number(vote_average).toFixed(1)}
-              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Box sx={{ width: '40px' }}>
+                  <Typography variant='h5' sx={{ width: '10px', paddingLeft: '3px', color: '#4caf50' }}>
+                    {Number(vote_average).toFixed(1)}
+                  </Typography>
+                </Box>
+                <Rating
+                  value={4.5}
+                  readOnly
+                  precision={0.5}
+                  size='small'
+                  sx={{ paddingLeft: '1em' }}
+                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
+                />
+                <Typography variant="subtitle1" sx={{ paddingLeft: '8.5em' }}>
+                  {release_date}
+                </Typography>
+              </Box>
             </Paper>
             <Box>
               <Typography
@@ -66,15 +81,30 @@ export default function Details () {
                   {overview}
                 </Typography>
               </CardContent>
+              <Box sx={{ paddingLeft: '1em', display: 'flex' }}>
+                {movieCast && movieCast.map((actor) =>
+                  (<Card key={actor.id} sx={{ padding: '0.5em' }}>
+                    <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`https://en.wikipedia.org/wiki/${actor.name}`}>
+                      <CardMedia
+                        component="img"
+                        image={`${img500}/${actor.profile_path}`}
+                        alt='picture'
+                        sx={{ width: '10vw' }}
+                      />
+                      <CardContent>
+                        <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                          {actor.name}
+                        </Typography>
+                        <Typography variant='subtitle1' sx={{ display: 'flex', justifyContent: 'center' }}>
+                          {actor.character}
+                        </Typography>
+                      </CardContent>
+                    </Link>
+                  </Card>
+                  ))
+                }
+              </Box>
             </Box>
-            <Box>
-              {adult} {cast}
-            </Box>
-            {/* <Box>
-              <Grid>
-                <Typography variant='h6'>{title} </Typography>
-              </Grid>
-            </Box> */}
           </Box>
         </CardActionArea>
       </Card>
