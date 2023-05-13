@@ -21,6 +21,18 @@ export default function Details () {
   }, []);
   // eslint-disable-next-line no-unused-vars
   const { title, id, poster_path, overview, vote_average, date, mediaType, video } = movieDetail;
+
+  const [movieCast, setMovieCast] = useState({});
+  useEffect(() => {
+    const getCast = async () => {
+      const cast = await fetch(`https://api.themoviedb.org/3/movie/${movieId.id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits`);
+      const cast_data = await cast.json();
+      setMovieCast(cast_data);
+      console.log(cast_data);
+    };
+    getCast();
+  }, []);
+  const { adult, cast } = movieCast;
   return (
     <Container>
       <Card sx={{
@@ -36,14 +48,27 @@ export default function Details () {
                 alt='poster'
                 sx={{ width: '20vw' }}
               />
+              <Typography variant='h6'>
+                {Number(vote_average).toFixed(1)}
+              </Typography>
             </Paper>
             <Box>
-              <Typography>
+              <Typography
+                variant='h4'
+                sx={{ display: 'flex', alignContent: 'center', justifyContent: 'center' }}>
                 {title}
               </Typography>
               <CardContent>
-                {overview}
+                <Typography variant='h5' sx={{ paddingY: '1em' }}>
+                  Overview
+                </Typography>
+                <Typography variant='h6'>
+                  {overview}
+                </Typography>
               </CardContent>
+            </Box>
+            <Box>
+              {adult} {cast}
             </Box>
             {/* <Box>
               <Grid>
