@@ -18,7 +18,7 @@ const MovieByGenre = ({ content, filtermovies }) => {
   }, [genre]);
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', padding: '20px' }}>
       {movies.map((c) =>
         (<MovieCard
           key={c.id}

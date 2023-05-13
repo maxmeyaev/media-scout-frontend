@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -21,8 +22,8 @@ function Copyright (props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" href="https://github.com/maxmeyaev/media-scout-frontend/">
+        Media Scout
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
