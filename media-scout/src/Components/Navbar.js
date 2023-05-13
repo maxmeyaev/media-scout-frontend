@@ -111,11 +111,12 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/tvshows">TV shows</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movie">Movies</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Fantasy">Fantasy</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Crime">Crime</Link></MenuItem>
       <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Drama">Drama</Link></MenuItem>
       <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Adventure">Adventure</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/recentlyadd">Recently Added</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Horror">Horror</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Action">Action</Link></MenuItem>
     </Menu>
   );
   const renderProfileMenu = (
