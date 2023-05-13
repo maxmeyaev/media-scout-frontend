@@ -148,10 +148,12 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./TVshows" style={{ color: 'white', textDecoration: 'none' }}>TV shows</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./Movie" style={{ color: 'white', textDecoration: 'none' }}>Movies</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./Kids" style={{ color: 'white', textDecoration: 'none' }}>Kids</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="./RecentlyAdd" style={{ color: 'white', textDecoration: 'none' }}>Recently Added</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
     </Menu>
   );
   const renderProfileMenu = (
@@ -163,7 +165,9 @@ export default function PrimarySearchAppBar () {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}><Link to="./profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="./register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="./login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to="./myaccount" style={{ color: 'white', textDecoration: 'none' }}>MyAccount</Link></MenuItem>
     </Menu>
   );
   return (

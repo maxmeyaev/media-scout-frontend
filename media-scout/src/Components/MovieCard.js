@@ -16,7 +16,7 @@ const img_size_500 = 'https://image.tmdb.org/t/p/w500';
 // eslint-disable-next-line no-unused-vars
 const img_size_300 = 'https://image.tmdb.org/t/p/w300';
 
-const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, video }) => {
+const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, video, genres }) => {
   const roundVote = (voteAvg) => {
     return voteAvg.toFixed(1);
   };
@@ -72,6 +72,22 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
               {voteAvg}
             </Typography> */}
             </div>
+            {/* <Typography variant='h6'>
+              {date}
+            </Typography>
+            <Typography variant='h6'>
+              {mediaType}
+            </Typography>
+            <Typography variant='h6'>
+              {video}
+            </Typography>
+            <Typography >
+              {genres}
+            </Typography> */
+              <Typography >
+                {genres}
+              </Typography>
+            }
           </CardContent>
         </CardActionArea>
       </Link>
