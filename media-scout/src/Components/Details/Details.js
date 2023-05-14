@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Card, CardActionArea, CardMedia, CardContent, Box, Typography, Paper, Container, Rating } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import axios from 'axios';
@@ -13,15 +13,10 @@ export default function Details () {
   // eslint-disable-next-line no-unused-vars
   const [movieDetail, setMovieDetail] = useState({});
   const movieId = useParams();
-  useEffect(() => {
-    const getMovie = async () => {
-      const result = await fetch(`https://api.themoviedb.org/3/movie/${movieId.id}?api_key=${process.env.REACT_APP_API_KEY}`);
-      const data = await result.json();
-      setMovieDetail(data);
-    };
-    getMovie();
-  }, []);
-
+  const getMovie = async () => {
+    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${movieId.id}?api_key=${process.env.REACT_APP_API_KEY}`);
+    setMovieDetail(data);
+  };
   const { title, poster_path, overview, vote_average, release_date } = movieDetail;
   // Movie cast fetch
   const [movieCast, setMovieCast] = useState([]);
@@ -32,6 +27,7 @@ export default function Details () {
   };
   useEffect(() => {
     fetchCast();
+    getMovie();
   }, []);
   return (
     <Container maxWidth="xl">

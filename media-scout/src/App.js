@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Navbar from './Components/Navbar';
 import HomePageMovies from './HomePageMovies';
-// import Details from './Components/Details/Details';
+import Details from './Components/Details/Details';
 import Movie from './Components/Movie';
 import TVshows from './Components/TVshows';
 import RecentlyAdd from './Components/RecentlyAdd';
@@ -53,7 +53,7 @@ export default function App () {
         <Route path='/login' element={ <Login />} />
         <Route path='/register' element={ <Register/>} />
         <Route path="/profile" element={<Profile/>}/>
-        {/* <Route path='/movies/:id' element={ <Details />}/> */}
+        <Route path='/movies/:id' element={ <Details />}/>
         <Route path='/movies/:genre' element={ <MovieByGenre content = {content} filtermovies = {filtermovies} />} />
         <Route path='/movie' element={ <Movie />} />
         <Route path='/tvshows' element={ <TVshows />} />

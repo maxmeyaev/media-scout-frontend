@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 // import axios from 'axios';
 
 const MovieByGenre = ({ content, filtermovies }) => {
-  const { genre } = useParams();
+  const genre = useParams();
   const [movies, setmovies] = useState([]);
   // eslint-disable-next-line no-unused-vars
   // const fetchHomePageMovies = async () => {
