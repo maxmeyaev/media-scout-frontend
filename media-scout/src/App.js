@@ -54,7 +54,7 @@ export default function App () {
         <Route path='/register' element={ <Register/>} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path='/movies/:id' element={ <Details />}/>
-        <Route path='/movies/:genre' element={ <MovieByGenre content = {content} filtermovies = {filtermovies} />} />
+        <Route path='/moviesGenre/:genre' element={ <MovieByGenre content = {content} filtermovies = {filtermovies} />} />
         <Route path='/movie' element={ <Movie />} />
         <Route path='/tvshows' element={ <TVshows />} />
         <Route path='/recentlyadd' element={ <RecentlyAdd />} />

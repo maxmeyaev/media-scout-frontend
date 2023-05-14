@@ -148,12 +148,12 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
     </Menu>
   );
   const renderProfileMenu = (

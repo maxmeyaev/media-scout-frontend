@@ -2,24 +2,17 @@ import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
 import Box from '@mui/material/Box';
 import { useParams } from 'react-router-dom';
-// import axios from 'axios';
 
 const MovieByGenre = ({ content, filtermovies }) => {
-  const genre = useParams();
-  const [movies, setmovies] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  // const fetchHomePageMovies = async () => {
-  //   const { data } = await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}`);
-  //   setContent(data.results);
-  //   console.log(data);
-  // };
+  const { genre } = useParams();
+  const [movieGenre, setMovieGenre] = useState([]);
   useEffect(() => {
-    setmovies(filtermovies(genre, content));
+    setMovieGenre(filtermovies(genre, content));
   }, [genre]);
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', padding: '20px' }}>
-      {movies.map((c) =>
+      {movieGenre.map((c) =>
         (<MovieCard
           key={c.id}
           id={c.id}

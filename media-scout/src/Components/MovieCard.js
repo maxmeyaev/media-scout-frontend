@@ -64,26 +64,8 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
                   emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
                 />
               </div>
-
-              {/* <Typography variant='subtitle' color={'white'}>
-              {labels[voteAvg]}
-            </Typography> */}
-              {/* <Typography color={'dark'} variant='subtitle1' style={{ backgroundColor: 'yellow', borderRadius: '50%', width: '3em', height: '2em', display: 'flex', justifyContent: 'center', alignContent: 'center' }}>
-              {voteAvg}
-            </Typography> */}
             </div>
-            {/* <Typography variant='h6'>
-              {date}
-            </Typography>
-            <Typography variant='h6'>
-              {mediaType}
-            </Typography>
-            <Typography variant='h6'>
-              {video}
-            </Typography>
-            <Typography >
-              {genres}
-            </Typography> */
+            {
               <Typography >
                 {genres}
               </Typography>
