@@ -16,7 +16,7 @@ import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MovieCard from './MovieCard';
 // import HomePageMovies from '../HomePageMovies';
