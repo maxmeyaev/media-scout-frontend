@@ -4,6 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { useState, useEffect } from 'react';
+import { resetUserSession } from '../service/AuthService';
 import IconButton from '@mui/material/IconButton';
 // import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
@@ -73,6 +74,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar () {
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    resetUserSession();
+    navigate('/login');
+  };
   // eslint-disable-next-line no-unused-vars
   const [searchText, setSearchText] = useState('');
   // eslint-disable-next-line no-unused-vars
@@ -139,6 +145,8 @@ export default function PrimarySearchAppBar () {
       <MenuItem onClick={handleMenuClose}><Link to="./register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./myaccount" style={{ color: 'white', textDecoration: 'none' }}>MyAccount</Link></MenuItem>
+      <MenuItem onClick={logoutHandler}><Link to="./logout" style={{ color: 'white', textDecoration: 'none' }}>Logout</Link></MenuItem>
+
     </Menu>
   );
   return (
