@@ -4,6 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { useState, useEffect } from 'react';
+import { resetUserSession } from '../service/AuthService';
 import IconButton from '@mui/material/IconButton';
 // import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
@@ -15,7 +16,7 @@ import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const theme = createTheme({
   spacing: 8,
   palette: {
@@ -69,6 +70,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar () {
+  const navigate = useNavigate();
+  //  const user = getUser();
+  //  const name = user !== 'undefined' && user ? user.name : '';
+  const logoutHandler = () => {
+    resetUserSession();
+    navigate('/login');
+  };
   // eslint-disable-next-line no-unused-vars
   const [searchText, setSearchText] = useState('');
   // eslint-disable-next-line no-unused-vars
@@ -148,12 +156,12 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/movies/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
     </Menu>
   );
   const renderProfileMenu = (
@@ -168,6 +176,8 @@ export default function PrimarySearchAppBar () {
       <MenuItem onClick={handleMenuClose}><Link to="./register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./myaccount" style={{ color: 'white', textDecoration: 'none' }}>MyAccount</Link></MenuItem>
+      {/* <input type='button' value="Logout" onClick={logoutHandler} /> */}
+      <MenuItem onClick={logoutHandler}><Link to="./logout" style={{ color: 'white', textDecoration: 'none' }}>Logout</Link></MenuItem>
     </Menu>
   );
   return (
