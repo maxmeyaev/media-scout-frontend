@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 function buildResponse (statusCode, body) {
   return {
     statusCode: statusCode,
@@ -6,7 +7,7 @@ function buildResponse (statusCode, body) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(body)
-    };
-  }
+  };
+}
 
-  module.exports.buildResponse = buildResponse;
+module.exports.buildResponse = buildResponse;

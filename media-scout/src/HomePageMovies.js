@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand */
 import React, { useState, useEffect } from 'react';
 import MovieCard from './Components/MovieCard';
 import Box from '@mui/material/Box';
@@ -11,7 +12,7 @@ const HomePageMovies = () => {
   const [user, setUser] = useState({});
 
   const fetchHomePageMovies = async () => {
-    const { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`);
+    const { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`);
     setContent(data.results);
   };
 
@@ -23,8 +24,6 @@ const HomePageMovies = () => {
   }, [page]);
 
   const handleFavoriteClick = async (id) => {
-    console.log(token);
-
     const options = {
       method: 'POST',
       url: 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/useraddmovie',
@@ -44,7 +43,7 @@ const HomePageMovies = () => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: '80%', margin: '0 auto', justifyContent: 'space-between' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', padding: '20px' }}>
       {content && content.map((c) =>
         (
           <MovieCard

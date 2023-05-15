@@ -1,16 +1,4 @@
-// import React from 'react';
-// import { Box, Typography } from '@mui/material';
-
-// const favorites = () => {
-//   return (
-//     <Box sx={{ padding: '16px' }}>
-//       <Typography variant="h4" sx={{ marginBottom: '16px' }}>My Favorites</Typography>
-//       <h1>hello</h1>
-//       {/* favorite content here */}
-//     </Box>
-//   );
-// };
-// export default favorites;
+/* eslint-disable object-shorthand */
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import axios from 'axios';

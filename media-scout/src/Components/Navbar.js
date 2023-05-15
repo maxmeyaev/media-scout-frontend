@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { useState, useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
+import { resetUserSession } from '../service/AuthService';
 // import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,7 +16,7 @@ import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MovieCard from './MovieCard';
 // import HomePageMovies from '../HomePageMovies';
@@ -73,6 +74,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar () {
+  const navigate = useNavigate();
+  //  const user = getUser();
+  //  const name = user !== 'undefined' && user ? user.name : '';
+  const logoutHandler = () => {
+    resetUserSession();
+    navigate('/login');
+  };
   // eslint-disable-next-line no-unused-vars
   const [searchText, setSearchText] = useState('');
   // eslint-disable-next-line no-unused-vars
@@ -138,6 +146,7 @@ export default function PrimarySearchAppBar () {
       <MenuItem onClick={handleMenuClose}><Link to="./profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link></MenuItem>
+      <MenuItem onClick={logoutHandler}><Link to="./logout" style={{ color: 'white', textDecoration: 'none' }}>Logout</Link></MenuItem>
     </Menu>
   );
   return (
