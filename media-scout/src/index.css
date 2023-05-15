@@ -86,6 +86,7 @@ img {
 
 .profile-wrapper  {
     padding: 20px;
+    text-align: center;
 }
 
 .profile-wrapper h1{
@@ -94,10 +95,11 @@ img {
 
 .profile-content {
     display: flex;
+    justify-content: center;
 }
 
 .profile-content-info {
-    max-width: 294px;
+    min-width: 360px;
 }
 
 .profile-info {
@@ -132,7 +134,6 @@ img {
 }
 
 .profile-info .box {
-    text-align: left;
     padding: 20px;
     border-bottom: 1px solid rgb(235, 235, 235);;
 }

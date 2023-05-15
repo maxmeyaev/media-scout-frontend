@@ -8,6 +8,7 @@ import Rating from '@mui/material/Rating';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 // eslint-disable-next-line no-unused-vars
 import { Button, CardActionArea, CardActions, autocompleteClasses, Container } from '@mui/material';
 
@@ -16,41 +17,31 @@ const img_size_500 = 'https://image.tmdb.org/t/p/w500';
 // eslint-disable-next-line no-unused-vars
 const img_size_300 = 'https://image.tmdb.org/t/p/w300';
 
-const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, video, genres }) => {
+const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, video, genres, handleFavoriteClick }) => {
   const roundVote = (voteAvg) => {
     return voteAvg.toFixed(1);
   };
   return (
     <Card sx={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: 400,
-      borderRadius: '2%',
-      backgroundColor: '#121212',
       padding: '10px',
-      marginTop: '20px',
       position: 'relative',
-      transition: 'transform 0.15s ease-in-out',
-      '&:hover': {
-        boxShadow: 20,
-        transform: 'scale3d(1.05, 1.05, 1)'
-      }
+      margin: '10px',
+      maxWidth: '400px'
     }}>
-      <Link style={{ textDecoration: 'none' }} to={`/movies/${id}`}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            image={`${img_size_500}/${poster}`}
-            alt='poster'
-          />
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          image={`${img_size_500}/${poster}`}
+          alt='poster'
+        />
+        <Link style={{ textDecoration: 'none' }} to={`/movies/${id}`}>
           <CardContent>
             <Typography variant="h6" display="block" gutterBottom color={'white'}>
               {title}
             </Typography>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <Typography variant='subtitle' color={'white'}>
-              Date: {date}
+                Date: {date}
               </Typography>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <Typography variant='subtitle' color={'white'} paddingRight={'12px'}>
@@ -61,7 +52,7 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
                   readOnly
                   precision={0.5}
                   size='small'
-                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit"/>}
+                  emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
                 />
               </div>
             </div>
@@ -71,8 +62,11 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
               </Typography>
             }
           </CardContent>
-        </CardActionArea>
-      </Link>
+        </Link>
+        <Button onClick={() => handleFavoriteClick(id)} style={{ display: 'block', textAlign: 'center', margin: '0 auto' }}>
+          <FavoriteIcon color="secondary" />
+        </Button>
+      </CardActionArea>
     </Card>
   );
 };
