@@ -13,6 +13,7 @@ export default function Details () {
   // eslint-disable-next-line no-unused-vars
   const [movieDetail, setMovieDetail] = useState({});
   const [streamingPlatforms, setStreamingPlatforms] = useState([]);
+  const [recommendations, setRecommendations] = useState([]);
   const movieId = useParams();
   // Gets the id of the movie
   const getMovie = async () => {
@@ -32,6 +33,10 @@ export default function Details () {
       setStreamingPlatforms([]);
     }
   };
+  const fetchRecommendations = async () => {
+    const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${movieId.id}/similar?api_key=${process.env.REACT_APP_API_KEY}`);
+    setRecommendations(data.results.slice(0, 5));
+  };
   const { title, poster_path, overview, vote_average, release_date } = movieDetail;
   // Movie cast fetch
   const [movieCast, setMovieCast] = useState([]);
@@ -42,6 +47,7 @@ export default function Details () {
   useEffect(() => {
     fetchCast();
     getMovie();
+    fetchRecommendations();
   }, [movieId]);
 
   const platformImg = (platform_name) => {
@@ -137,6 +143,30 @@ export default function Details () {
                           {platformImg(platform.display_name)}
                         </Box>
                       </Box>
+                    ))}
+                  </CardContent>
+                </Card>
+              </Box>
+              <Box sx={{ paddingLeft: '1em', paddingTop: '0.5em', display: 'flex' }}>
+                <Card sx={{ padding: '0.5em', width: '100%' }}>
+                  <Typography variant="h5">Recommendations:</Typography>
+                  <CardContent sx={{ display: 'flex', flexDirection: 'row' }}>
+                    {recommendations.map((recommendation) => (
+                      <Card key={recommendation.id} sx={{ padding: '0.5em' }}>
+                        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/details/${recommendation.id}`}>
+                          <CardMedia
+                            component="img"
+                            image={`${img500}/${recommendation.poster_path}`}
+                            alt='poster'
+                            sx={{ width: '10vw' }}
+                          />
+                          <CardContent>
+                            <Typography variant="h6" sx={{ display: 'flex', justifyContent: 'center' }}>
+                              {recommendation.title}
+                            </Typography>
+                          </CardContent>
+                        </Link>
+                      </Card>
                     ))}
                   </CardContent>
                 </Card>
