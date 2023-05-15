@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Movies from './Components/Movies';
+// import Movies from './Components/Movies';
 import { resetUserSession } from './service/AuthService';
+import { Button } from '@mui/material';
 // import { useNavigate } from 'react-router-dom';
 
 const Profile = (props) => {
@@ -32,7 +33,6 @@ const Profile = (props) => {
               <div className="box user-email">
                 <h3>Email Address</h3>
                 <p>{username?.email}</p>
-                <Link to="/">Edit</Link>
               </div>
             </div>
             <div className="profile-links">
@@ -42,9 +42,10 @@ const Profile = (props) => {
                 </li>
               </ul>
             </div>
-            <input type='button' value="Logout" onClick={logoutHandler} />
+            <Button variant="outlined" color="error" onClick={logoutHandler}>
+              Logout
+            </Button>
           </div>
-          <Movies />
         </div>
       </div>
     </div>

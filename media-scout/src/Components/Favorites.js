@@ -18,21 +18,28 @@ import MovieCard from '../Components/MovieCard';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
+  const token = sessionStorage.getItem('token');
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  const handleFavoriteClick = async (id) => {
+    const options = {
+      method: 'POST',
+      url: 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/useraddmovie',
+      headers: { 'x-api-key': '8F6Dw9NrNn8XhHUtHErDk8xmXxBi2Bt691q0SSbw' },
+      data: {
+        username: user.username,
+        movieID: id,
+        token: token
+      }
+    };
+
+    axios.request(options).then(function (response) {
+      fetchFavorites();
+      console.log(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
   const fetchMovieFromId = (movieIds) => {
-    // movieIds.forEach(movieId => {
-    //   console.log(movieId);
-    //   const options = {
-    //     method: 'GET',
-    //     url: 'https://api.themoviedb.org/3/movie/' + parseInt(movieId),
-    //     params: { api_key: '60f70e6b520adc59900dab661450321b' }
-    //   };
-    //   axios.request(options).then(function (response) {
-    //     setFavorites(favorites => [...favorites, response.data]);
-    //     console.log(response.data);
-    //   }).catch(function (error) {
-    //     console.error(error);
-    //   });
-    // });
     Promise.all(movieIds.map(movieId => {
       console.log(movieId);
       const options = {
@@ -50,25 +57,23 @@ const Favorites = () => {
       setFavorites(movies);
     });
   };
-  useEffect(() => {
-    const token = sessionStorage.getItem('token');
-    const username = JSON.parse(sessionStorage.getItem('user'));
-    const fetchFavorites = async () => {
-      const options = {
-        method: 'GET',
-        url: 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/getmovies',
-        headers: {
-          'x-api-key': '8F6Dw9NrNn8XhHUtHErDk8xmXxBi2Bt691q0SSbw',
-          token: token,
-          username: username.username
-        }
-      };
-      axios.request(options).then(function (response) {
-        fetchMovieFromId(response.data.movies);
-      }).catch(function (error) {
-        console.error(error);
-      });
+  const fetchFavorites = async () => {
+    const options = {
+      method: 'GET',
+      url: 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/getmovies',
+      headers: {
+        'x-api-key': '8F6Dw9NrNn8XhHUtHErDk8xmXxBi2Bt691q0SSbw',
+        token: token,
+        username: user.username
+      }
     };
+    axios.request(options).then(function (response) {
+      fetchMovieFromId(response.data.movies);
+    }).catch(function (error) {
+      console.error(error);
+    });
+  };
+  useEffect(() => {
     fetchFavorites();
   }, []);
 
@@ -88,6 +93,7 @@ const Favorites = () => {
               date={c.first_air_date || c.release_date}
               mediaType={c.media_type}
               video={c.video}
+              handleFavoriteClick={handleFavoriteClick}
             />
           )
         ))}
