@@ -72,12 +72,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }
 }));
 
-// async function populate (query) {
-//   const data = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${query}`);
-//   console.log(data.data.results);
-//   return data.data.results;
-// }
-
 export default function PrimarySearchAppBar () {
   // eslint-disable-next-line no-unused-vars
   const [searchText, setSearchText] = useState('');
@@ -85,49 +79,13 @@ export default function PrimarySearchAppBar () {
   const [movies, setMovies] = useState([]);
   const fetchMovies = async (searchText) => {
     const data = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`);
-    // const response = await fetch(url);
 
     console.log(data.data.results);
     setMovies(data.data.results);
-    // const resJson = await response.json();
-
-    // if (resJson.Search) {
-    //   setMovies(resJson.Search);
-    // }
   };
   useEffect(() => {
     fetchMovies(searchText);
   }, [searchText]);
-
-  // const searchMovie = async (ev) => {
-  //   if (ev) {
-  //     ev.preventDefault();
-  //   }
-  //   const { data } = await axios.get((`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`));
-  //   console.log(data.results[0]);
-  //   setMovies(data.results);
-  //   if (data.results.length) {
-  //     await searchMovie(data.results[0].id);
-  //   };
-  // };
-  // useEffect(() => {
-  //   searchMovie();
-  // }, []);
-
-  // const getMovieSearch = (e) => {
-  //   e.preventDefault();
-  //   setSearchText(e.target.value);
-
-  //   fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${e.target.value}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (!data.errors) {
-  //         setResults(data.results);
-  //       } else {
-  //         setResults([]);
-  //       }
-  //     });
-  // };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
