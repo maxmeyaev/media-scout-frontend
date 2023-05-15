@@ -26,15 +26,16 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
       padding: '10px',
       position: 'relative',
       margin: '10px',
-      maxWidth: '400px'
+      maxWidth: '400px',
+      backgroundColor: '#222'
     }}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          image={`${img_size_500}/${poster}`}
-          alt='poster'
-        />
         <Link style={{ textDecoration: 'none' }} to={`/movies/${id}`}>
+          <CardMedia
+            component="img"
+            image={`${img_size_500}/${poster}`}
+            alt='poster'
+          />
           <CardContent>
             <Typography variant="h6" display="block" gutterBottom color={'white'}>
               {title}
@@ -63,10 +64,10 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
             }
           </CardContent>
         </Link>
-        <Button onClick={() => handleFavoriteClick(id)} style={{ display: 'block', textAlign: 'center', margin: '0 auto' }}>
-          <FavoriteIcon color="secondary" />
-        </Button>
       </CardActionArea>
+      <Button onClick={() => handleFavoriteClick(id)} style={{ display: 'block', textAlign: 'center', margin: '0 auto' }}>
+        <FavoriteIcon color="secondary" />
+      </Button>
     </Card>
   );
 };

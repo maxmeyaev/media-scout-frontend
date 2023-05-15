@@ -138,7 +138,6 @@ export default function PrimarySearchAppBar () {
       <MenuItem onClick={handleMenuClose}><Link to="./profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to="./login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to="./myaccount" style={{ color: 'white', textDecoration: 'none' }}>MyAccount</Link></MenuItem>
     </Menu>
   );
   return (
