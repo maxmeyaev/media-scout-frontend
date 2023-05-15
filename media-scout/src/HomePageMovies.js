@@ -152,3 +152,84 @@ const HomePageMovies = () => {
 };
 
 export default HomePageMovies;
+// import React, { useState, useEffect } from 'react';
+// import MovieCard from './Components/MovieCard';
+// import Box from '@mui/material/Box';
+// import axios from 'axios';
+
+// const HomePageMovies = () => {
+//   const [content, setContent] = useState([]);
+//   const [token, setToken] = useState('');
+//   const [user, setUser] = useState({});
+
+//   const fetchHomePageMovies = async () => {
+//     const { data } = await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.REACT_APP_API_KEY}`);
+//     setContent(data.results);
+//   };
+
+//   useEffect(() => {
+//     setToken(sessionStorage.getItem('token'));
+//     setUser(JSON.parse(sessionStorage.getItem('user')));
+//     fetchHomePageMovies();
+//   }, []);
+
+//   const handleFavoriteClick = async (id) => {
+//     console.log(token);
+//     const isFavorited = user.favorites.includes(id);
+//     console.log(isFavorited);
+
+//     const options = {
+//       method: isFavorited ? 'DELETE' : 'POST',
+//       url: isFavorited
+//         ? 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/userremovemovie'
+//         : 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/useraddmovie',
+//       headers: { 'x-api-key': '8F6Dw9NrNn8XhHUtHErDk8xmXxBi2Bt691q0SSbw' },
+//       data: {
+//         username: user.username,
+//         movieID: id,
+//         token: token
+//       }
+//     };
+//     axios.request(options).then(function (response) {
+//       console.log(response.data);
+//       // Update the user state based on whether the movie is being favorited or unfavorited
+//       setUser(prevState => {
+//         if (isFavorited) {
+//           return {
+//             ...prevState,
+//             favorites: prevState.favorites.filter(favoriteId => favoriteId !== id)
+//           };
+//         } else {
+//           return {
+//             ...prevState,
+//             favorites: [...prevState.favorites, id]
+//           };
+//         }
+//       });
+//     }).catch(function (error) {
+//       console.error(error);
+//     });
+//   };
+
+//   return (
+//     <Box sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: '80%', margin: '0 auto', justifyContent: 'space-between' }}>
+//       {content && content.map((c) =>
+//         (
+//           <MovieCard
+//             id={c.id}
+//             key={c.id}
+//             poster={c.poster_path}
+//             title={c.title || c.name}
+//             overview={c.overview}
+//             voteAvg={c.vote_average}
+//             date={c.first_air_date || c.release_date}
+//             mediaType={c.media_type}
+//             video={c.video}
+//             handleFavoriteClick={handleFavoriteClick}
+//           />)
+//       )}
+//     </Box>
+//   );
+// };
+
+// export default HomePageMovies;

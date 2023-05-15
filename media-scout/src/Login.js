@@ -58,7 +58,7 @@ export default function SignIn (props) {
 
     axios.post(loginAPIUrl, requestBody, requestConfig).then((response) => {
       setUserSession(response.data.user, response.data.token);
-      navigate('/myaccount');
+      navigate('/profile');
     }).catch((error) => {
       console.log(error);
       if (error.response.status === 401 || error.response.status === 403) {

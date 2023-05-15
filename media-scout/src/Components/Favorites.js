@@ -18,44 +18,56 @@ import MovieCard from '../Components/MovieCard';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
-
+  const fetchMovieFromId = (movieIds) => {
+    // movieIds.forEach(movieId => {
+    //   console.log(movieId);
+    //   const options = {
+    //     method: 'GET',
+    //     url: 'https://api.themoviedb.org/3/movie/' + parseInt(movieId),
+    //     params: { api_key: '60f70e6b520adc59900dab661450321b' }
+    //   };
+    //   axios.request(options).then(function (response) {
+    //     setFavorites(favorites => [...favorites, response.data]);
+    //     console.log(response.data);
+    //   }).catch(function (error) {
+    //     console.error(error);
+    //   });
+    // });
+    Promise.all(movieIds.map(movieId => {
+      console.log(movieId);
+      const options = {
+        method: 'GET',
+        url: 'https://api.themoviedb.org/3/movie/' + parseInt(movieId),
+        params: { api_key: '60f70e6b520adc59900dab661450321b' }
+      };
+      return axios.request(options).then(function (response) {
+        console.log(response.data);
+        return response.data;
+      }).catch(function (error) {
+        console.error(error);
+      });
+    })).then((movies) => {
+      setFavorites(movies);
+    });
+  };
   useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    const username = JSON.parse(sessionStorage.getItem('user'));
     const fetchFavorites = async () => {
-      // const token = localStorage.getItem('token');
-      // const { data } = await axios.get('https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/getmovies', {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`
-      //   }
-      // });
-      // const options = {
-      //   method: 'GET',
-      //   url: 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/getmovies',
-      //   headers: { 'x-api-key': '8F6Dw9NrNn8XhHUtHErDk8xmXxBi2Bt691q0SSbw' },
-      //   data: {
-      //     username: 'testans',
-      //     token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhbnMiLCJuYW1lIjoiYW5zIiwiZW1haWwiOiJ0ZXN0MTIzQGdtYWlsLmNvbSIsImlhdCI6MTY4NDAxMzI2MCwiZXhwIjoxNjg0MDE2ODYwfQ.oJn74vqmgn9Yczo-CnssvrUiGEBdvjctT9SPs_x_BL0'
-      //   }
-      // };
-
-      // axios.request(options).then(function (response) {
-      //   console.log(response.data);
-      //   setFavorites(response.data);
-      // }).catch(function (error) {
-      //   console.error(error);
-      // });
-      axios.get('https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/getmovies', {
-        params: {
-          username: 'testans',
-          token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RhbnMiLCJuYW1lIjoiYW5zIiwiZW1haWwiOiJ0ZXN0MTIzQGdtYWlsLmNvbSIsImlhdCI6MTY4NDAxMzI2MCwiZXhwIjoxNjg0MDE2ODYwfQ.oJn74vqmgn9Yczo-CnssvrUiGEBdvjctT9SPs_x_BL0'
-        },
+      const options = {
+        method: 'GET',
+        url: 'https://uqpgy0s4x5.execute-api.us-east-2.amazonaws.com/prod/getmovies',
         headers: {
-          'x-api-key': '8F6Dw9NrNn8XhHUtHErDk8xmXxBi2Bt691q0SSbw'
+          'x-api-key': '8F6Dw9NrNn8XhHUtHErDk8xmXxBi2Bt691q0SSbw',
+          token: token,
+          username: username.username
         }
-      })
-        .then(response => {
-          setFavorites(response.data);
-        });
-      console.log(setFavorites);
+      };
+      axios.request(options).then(function (response) {
+        fetchMovieFromId(response.data.movies);
+      }).catch(function (error) {
+        console.error(error);
+      });
     };
     fetchFavorites();
   }, []);
@@ -63,20 +75,21 @@ const Favorites = () => {
   return (
     <Box sx={{ padding: '16px' }}>
       <Typography variant="h4" sx={{ marginBottom: '16px' }}>My Favorites</Typography>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: '800px', margin: '0 auto', justifyContent: 'space-between' }}>
-        {favorites.map((favorite) => (
-          <div key={favorite.id} style={{ position: 'relative', margin: '1px', width: '200px' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', maxWidth: '80%', margin: '0 auto', justifyContent: 'space-between' }}>
+        {favorites && favorites.map((c) => (
+          (
             <MovieCard
-              id={favorite.movieId}
-              poster={favorite.poster}
-              title={favorite.title}
-              overview={favorite.overview}
-              voteAvg={favorite.voteAverage}
-              date={favorite.date}
-              mediaType={favorite.mediaType}
-              video={favorite.video}
+              id={c.id}
+              key={c.id}
+              poster={c.poster_path}
+              title={c.title || c.name}
+              overview={c.overview}
+              voteAvg={c.vote_average}
+              date={c.first_air_date || c.release_date}
+              mediaType={c.media_type}
+              video={c.video}
             />
-          </div>
+          )
         ))}
       </Box>
     </Box>

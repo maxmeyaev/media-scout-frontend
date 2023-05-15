@@ -6,13 +6,14 @@ import HomePageMovies from './HomePageMovies';
 import Movie from './Components/Movie';
 import TVshows from './Components/TVshows';
 import RecentlyAdd from './Components/RecentlyAdd';
-import Profile from './Components/Profile';
+// import Profile from './Components/Profile';
 import Login from './Login';
 import Discussion from './Components/Discussion';
 import MovieByGenre from './Components/MovieByGenre';
 import axios from 'axios';
 import Register from './Register';
 import MyAccount from './Myaccount';
+import Favorites from './Components/Favorites';
 // import PublicRoute from './routes/PublicRoute';
 // import PrivateRoute from './routes/PrivateRoute';
 
@@ -52,14 +53,15 @@ export default function App () {
         <Route exact path="/" element={<HomePageMovies content = {content} />}/>
         <Route path='/login' element={ <Login />} />
         <Route path='/register' element={ <Register/>} />
-        <Route path="/profile" element={<Profile/>}/>
+        {/* <Route path="/profile" element={<Profile/>}/> */}
         {/* <Route path='/movies/:id' element={ <Details />}/> */}
         <Route path='/movies/:genre' element={ <MovieByGenre content = {content} filtermovies = {filtermovies} />} />
         <Route path='/movie' element={ <Movie />} />
         <Route path='/tvshows' element={ <TVshows />} />
         <Route path='/recentlyadd' element={ <RecentlyAdd />} />
         <Route path='/discussion' element={ <Discussion />} />
-        <Route path="/myaccount" element={<MyAccount/>}/>
+        <Route path="/profile" element={<MyAccount/>}/>
+        <Route path="/favorites" element={<Favorites/>}/>
       </Routes>
     </div>
   );
