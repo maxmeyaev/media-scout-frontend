@@ -51,6 +51,8 @@ export default function Details () {
       return <img src='https://cdn-icons-png.flaticon.com/512/1384/1384061.png' width="20" height="60" />;
     } else if (platform_name === 'Google Play') {
       return <img src='https://image.similarpng.com/very-thumbnail/2021/09/Google-play-icon-design-on-transparent-background-PNG.png' width="20" height="60" />;
+    } else if (platform_name === '') {
+      return <h5>This movie is not available on streaming services</h5>;
     }
   };
   return (
@@ -133,8 +135,6 @@ export default function Details () {
                         <Typography sx={{ display: 'flex', padding: '1em', justifyContent: 'space-between' }}>{`${platform.display_name}`}</Typography>
                         <Box sx={{ padding: '1em' }}>
                           {platformImg(platform.display_name)}
-                          {/* {platform.display_name === 'Amazon Instant Video' ? <img src='https://m.media-amazon.com/images/I/413+SVFO39L.png' width="20" height="60" /> : ''}
-                          {platform.display_name === 'Itunes' ? <img src='https://m.media-amazon.com/images/I/413+SVFO39L.png' width="20" height="60" /> : ''} */}
                         </Box>
                       </Box>
                     ))}
