@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 const Profile = (props) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState(null);
+  const [email, setEmail] = useState('');
   //  const user = getUser();
   //  const name = user !== 'undefined' && user ? user.name : '';y
   const logoutHandler = () => {
@@ -17,6 +18,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     setUsername(JSON.parse(sessionStorage.getItem('user')));
+    setEmail(JSON.parse(sessionStorage.getItem('email')));
   }, []);
 
   return (
@@ -28,10 +30,11 @@ const Profile = (props) => {
             <div className="box profile-info">
               <div className="box user-name">
                 <h2>{username && username?.name}</h2>
+                <h2>{email && email?.email}</h2>
                 <Link to="/" className='btn btn-primary'>Edit Profile</Link>
               </div>
               <div className="box user-email">
-                <h3>Email Address</h3>
+                <h5>Email Address</h5>
                 <p>{username?.email}</p>
               </div>
             </div>

@@ -19,6 +19,13 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import MovieCard from './MovieCard';
+import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
+import FlutterDashIcon from '@mui/icons-material/FlutterDash';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
+import WarningIcon from '@mui/icons-material/Warning';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import MoodBadIcon from '@mui/icons-material/MoodBad';
 // import HomePageMovies from '../HomePageMovies';
 
 const theme = createTheme({
@@ -127,12 +134,60 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>
+        <ListItemIcon>
+          <FlutterDashIcon />
+        </ListItemIcon>
+        <Link to="/moviesGenre/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>
+        Fantasy
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>
+        <ListItemIcon>
+          <FlashOnIcon />
+        </ListItemIcon>
+        <Link to="/moviesGenre/Action" style={{ color: 'white', textDecoration: 'none' }}>
+        Action
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>
+        <ListItemIcon>
+          <TheaterComedyIcon />
+        </ListItemIcon>
+        <Link to="/moviesGenre/Drama" style={{ color: 'white', textDecoration: 'none' }}>
+        Drama
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>
+        <ListItemIcon>
+          <WarningIcon />
+        </ListItemIcon>
+        <Link to="/moviesGenre/Crime" style={{ color: 'white', textDecoration: 'none' }}>
+        Crime
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>
+        <ListItemIcon>
+          <RocketLaunchIcon />
+        </ListItemIcon>
+        <Link to="/moviesGenre/Adventure" style={{ color: 'white', textDecoration: 'none' }}>
+        Adventure
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>
+        <ListItemIcon>
+          <MoodBadIcon />
+        </ListItemIcon>
+        <Link to="/moviesGenre/Horror" style={{ color: 'white', textDecoration: 'none' }}>
+        Horror
+        </Link>
+      </MenuItem>
+      {/* <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem> */}
+      {/* <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem> */}
+      {/* <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem> */}
+      {/* <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem> */}
     </Menu>
   );
   const renderProfileMenu = (
