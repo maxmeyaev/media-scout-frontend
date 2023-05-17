@@ -1,16 +1,18 @@
 .Banner {
     height: 400px;
     position: relative;
-  }
-  .Banner .Media {
+}
+
+.Banner .Media {
     background-color: white;
     height: 100%;
     overflow: hidden;
     position: relative;
     transition: 300ms;
     cursor: pointer;
-  }
-  .Banner .Media .MediaCaption {
+}
+
+.Banner .Media .MediaCaption {
     text-overflow: ellipsis;
     position: absolute;
     bottom: 0;
@@ -24,18 +26,22 @@
     font-weight: 200;
     transition: 300ms;
     cursor: pointer;
-  }
-  .Banner .Media .MediaCaption:hover {
+}
+
+.Banner .Media .MediaCaption:hover {
     opacity: 0.8;
-  }
-  .Banner .Media:hover {
+}
+
+.Banner .Media:hover {
     filter: brightness(115%);
-  }
-  .Banner .BannerGrid {
+}
+
+.Banner .BannerGrid {
     height: 100%;
     position: relative;
-  }
-  .Banner .Content {
+}
+
+.Banner .Content {
     color: white;
     background-color: rgb(3, 0, 0);
     height: 100%;
@@ -43,33 +49,39 @@
     cursor: pointer;
     padding: 30px;
     transition: 300ms;
-  }
-  .Banner .Content:hover,
-  .Banner .Content:active {
+}
+
+.Banner .Content:hover,
+.Banner .Content:active {
     background-color: tomato;
-  }
-  .Banner .Content:hover .ViewButton,
-  .Banner .Content:active .ViewButton {
+}
+
+.Banner .Content:hover .ViewButton,
+.Banner .Content:active .ViewButton {
     background-color: white;
     color: red;
-  }
-  .Banner .Content .Title {
+}
+
+.Banner .Content .Title {
     font-size: 42px;
     font-weight: 500;
-  }
-  .Banner .Content .Caption {
+}
+
+.Banner .Content .Caption {
     margin-top: 10px;
     font-size: 24px;
-  }
-  .Banner .Content .ViewButton {
+}
+
+.Banner .Content .ViewButton {
     margin-top: 40px;
     color: white;
     font-size: 24px;
     border: 3px solid white;
     text-transform: capitalize;
     transition: 200ms;
-  }
-  * {
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -84,12 +96,12 @@ img {
     margin: 0 auto;
 }
 
-.profile-wrapper  {
+.profile-wrapper {
     padding: 20px;
     text-align: center;
 }
 
-.profile-wrapper h1{
+.profile-wrapper h1 {
     margin-bottom: 20px;
 }
 
@@ -135,8 +147,10 @@ img {
 
 .profile-info .box {
     padding: 20px;
-    border-bottom: 1px solid rgb(235, 235, 235);;
+    border-bottom: 1px solid rgb(235, 235, 235);
+    ;
 }
+
 .profile-info .box.user-name {
     text-align: center;
 }
@@ -145,7 +159,8 @@ img {
     margin-bottom: 20px;
 }
 
-.profile-info .box h3, .profile-info .box p {
+.profile-info .box h3,
+.profile-info .box p {
     margin-bottom: 10px;
 }
 
@@ -169,7 +184,7 @@ img {
     margin-bottom: 20px;
 }
 
-.profile-links ul{
+.profile-links ul {
     list-style: none;
 }
 
@@ -199,7 +214,7 @@ img {
 }
 
 
-.movies h2{
+.movies h2 {
     margin-bottom: 20px;
 }
 
@@ -210,13 +225,14 @@ img {
 .movie-card {
     width: calc(100%/3 - 20px);
     max-height: 350px;
-    margin:0 10px
+    margin: 0 10px
 }
 
 .movie-card:first-child {
-    margin:0 10px 0 0;
+    margin: 0 10px 0 0;
 }
-.movie-card:last-child{
+
+.movie-card:last-child {
     margin: 0 0 0 10px
 }
 
@@ -225,16 +241,80 @@ img {
     height: 100%;
     object-fit: fill;
 }
+
 .header a {
     margin: 0 lem 0 1em;
     font-size: 1.2em;
     text-decoration: none;
 }
+
 .content {
     margin-left: 2em;
     font-size: 1.5em;
 }
+
 .message {
     color: red;
     font-size: 0.7em;
+}
+
+/* profile */
+
+
+
+.card {
+    width: 380px;
+    border: none;
+    border-radius: 15px;
+    padding: 8px;
+    background-color: #fff;
+    position: relative;
+    height: 370px;
+}
+
+.upper {
+    height: 100px;
+
+}
+
+.upper img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+.user {
+    position: relative;
+}
+
+.profile img {
+    height: 80px;
+    width: 80px;
+    margin-top: 2px;
+
+
+}
+
+.profile {
+    position: absolute;
+    top: -50px;
+    left: 38%;
+    height: 90px;
+    width: 90px;
+    border: 3px solid #fff;
+
+    border-radius: 50%;
+
+}
+
+.follow {
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 35px;
+}
+
+.stats span {
+    font-size: 29px;
 }

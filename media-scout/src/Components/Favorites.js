@@ -69,6 +69,7 @@ const Favorites = () => {
     };
     axios.request(options).then(function (response) {
       fetchMovieFromId(response.data.movies);
+      sessionStorage.setItem('favorites', response.data.movies.length);
     }).catch(function (error) {
       console.error(error);
     });
