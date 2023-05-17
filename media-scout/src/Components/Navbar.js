@@ -6,6 +6,13 @@ import Toolbar from '@mui/material/Toolbar';
 import { useState, useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
 import { resetUserSession } from '../service/AuthService';
+import TheaterComedyIcon from '@mui/icons-material/TheaterComedy';
+import FlutterDashIcon from '@mui/icons-material/FlutterDash';
+// import ListItemIcon from '@mui/material/ListItemIcon';
+import FlashOnIcon from '@mui/icons-material/FlashOn';
+import WarningIcon from '@mui/icons-material/Warning';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import MoodBadIcon from '@mui/icons-material/MoodBad';
 // import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
@@ -101,7 +108,14 @@ export default function PrimarySearchAppBar () {
     setMovies(data.data.results);
   };
   useEffect(() => {
-    fetchMovies(searchText);
+    if (searchText.length > 0) {
+      fetchMovies(searchText);
+      // eslint-disable-next-line object-shorthand
+      navigate('/SearchPage', { movies: movies });
+    } else if (searchText.length === 0) {
+      navigate('/');
+    }
+    // fetchMovies(searchText);
   }, [searchText]);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -136,12 +150,17 @@ export default function PrimarySearchAppBar () {
       open={isHamburgerOpen}
       onClose={handleHamburgerMenuClose}
     >
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>Fantasy</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
-      <MenuItem onClick={handleHamburgerMenuClose}><Link to="/moviesGenre/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}>
+        <FlutterDashIcon sx={{ height: 24, width: 24, marginRight: '10px', color: 'white', textDecoration: 'none' }}/>
+        <Link to="/moviesGenre/Fantasy" style={{ color: 'white', textDecoration: 'none' }}>
+          Fantasy
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><WarningIcon sx={{ height: 24, width: 24, marginRight: '10px', color: 'white', textDecoration: 'none' }}/><Link to="/moviesGenre/Crime" style={{ color: 'white', textDecoration: 'none' }}>Crime</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><TheaterComedyIcon sx={{ height: 24, width: 24, marginRight: '10px', color: 'white', textDecoration: 'none' }}/><Link to="/moviesGenre/Drama" style={{ color: 'white', textDecoration: 'none' }}>Drama</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><RocketLaunchIcon sx={{ height: 24, width: 24, marginRight: '10px', color: 'white', textDecoration: 'none' }}/><Link to="/moviesGenre/Adventure" style={{ color: 'white', textDecoration: 'none' }}>Adventure</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><MoodBadIcon sx={{ height: 24, width: 24, marginRight: '10px', color: 'white', textDecoration: 'none' }}/><Link to="/moviesGenre/Horror" style={{ color: 'white', textDecoration: 'none' }}>Horror</Link></MenuItem>
+      <MenuItem onClick={handleHamburgerMenuClose}><FlashOnIcon sx={{ height: 24, width: 24, marginRight: '10px', color: 'white', textDecoration: 'none' }}/><Link to="/moviesGenre/Action" style={{ color: 'white', textDecoration: 'none' }}>Action</Link></MenuItem>
     </Menu>
   );
   const renderProfileMenu = (
