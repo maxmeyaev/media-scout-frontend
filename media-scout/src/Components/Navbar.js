@@ -101,9 +101,13 @@ export default function PrimarySearchAppBar () {
     setMovies(data.data.results);
   };
   useEffect(() => {
-    fetchMovies(searchText);
+    if (searchText.length > 0) {
+      fetchMovies(searchText);
+      navigate('/SearchPage', { movies: movies });
+    } else if (searchText.length === 0) {
+      navigate('/');
+    }
   }, [searchText]);
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
 
