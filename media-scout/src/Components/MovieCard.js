@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import StarIcon from '@mui/icons-material/Star';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 // eslint-disable-next-line no-unused-vars
-import { Button, CardActionArea, CardActions, autocompleteClasses, Container } from '@mui/material';
+import { Button, CardActionArea, CardActions, autocompleteClasses, Container, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 const buttonTheme = createTheme({
   palette: {
@@ -79,24 +79,26 @@ const MovieCard = ({ title, id, poster, overview, voteAvg, date, mediaType, vide
               </Typography>
             }
           </CardContent>
+          <ThemeProvider theme={buttonTheme}>
+            <Box>
+              <Button onClick={handleFavoriteClick} sx={{
+                display: 'block',
+                textAlign: 'center',
+                margin: '0 auto',
+                '&:hover': {
+                  backgroundColor: 'transparent'
+                }
+              }}>
+                <FavoriteIcon color="heart" sx={{
+                  '&:hover': {
+                    width: '50px',
+                    height: '50px'
+                  }
+                }}/>
+              </Button>
+            </Box>
+          </ThemeProvider>
         </Link>
-        <ThemeProvider theme={buttonTheme}>
-          <Button onClick={() => handleFavoriteClick(id)} sx={{
-            display: 'block',
-            textAlign: 'center',
-            margin: '0 auto',
-            '&:hover': {
-              backgroundColor: 'transparent'
-            }
-          }}>
-            <FavoriteIcon color="heart" sx={{
-              '&:hover': {
-                width: '50px',
-                height: '50px'
-              }
-            }}/>
-          </Button>
-        </ThemeProvider>
       </CardActionArea>
     </Card>
   );

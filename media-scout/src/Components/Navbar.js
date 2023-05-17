@@ -11,12 +11,18 @@ import InputBase from '@mui/material/InputBase';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
+import Avatar from '@mui/material/Avatar';
+import Logout from '@mui/icons-material/Logout';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import LoginIcon from '@mui/icons-material/Login';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 // eslint-disable-next-line no-unused-vars
 import { spacing } from '@mui/system';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { Link, useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import MovieCard from './MovieCard';
 // import HomePageMovies from '../HomePageMovies';
@@ -27,6 +33,9 @@ const theme = createTheme({
     mode: 'dark',
     primary: {
       main: '#1976d2'
+    },
+    plain: {
+      main: '#ffffff'
     }
   }
 });
@@ -143,10 +152,11 @@ export default function PrimarySearchAppBar () {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link to="./profile" style={{ color: 'white', textDecoration: 'none' }}>Profile</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to="./register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to="./login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link></MenuItem>
-      <MenuItem onClick={logoutHandler}><Link to="./logout" style={{ color: 'white', textDecoration: 'none' }}>Logout</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Avatar sx={{ height: 24, width: 24, marginRight: '10px' }}/><Link to="./profile" style={{ color: 'white', textDecoration: 'none' }}>My Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><PersonAddIcon sx={{ height: 24, width: 24, marginRight: '10px' }} /><Link to="./register" style={{ color: 'white', textDecoration: 'none' }}>Register</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><LoginIcon sx={{ height: 24, width: 24, marginRight: '10px' }}/><Link to="./login" style={{ color: 'white', textDecoration: 'none' }}>Login</Link></MenuItem>
+      <MenuItem onClick={logoutHandler}><Logout sx={{ height: 24, width: 24, marginRight: '10px' }}/><Link to="./logout" style={{ color: 'white', textDecoration: 'none' }}>Logout</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Button variant='outlined' color='plain' endIcon={<ThumbUpAltIcon/>}>Subscribe</Button></MenuItem>
     </Menu>
   );
   return (

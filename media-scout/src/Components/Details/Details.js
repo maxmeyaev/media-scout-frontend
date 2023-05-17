@@ -2,22 +2,43 @@
 /* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Card, CardActionArea, CardMedia, CardContent, Box, Typography, Paper, Container, Rating } from '@mui/material';
+import { Card, CardActionArea, CardMedia, CardContent, Box, Typography, Paper, Container, Rating, Button, Modal } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import Trailer from './Trailer';
 import axios from 'axios';
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const darkTheme = createTheme({
+  palette: {
+    dark: {
+      main: '#121212'
+    }
+  }
+});
 const img500 = 'https://image.tmdb.org/t/p/w500';
 
 export default function Details () {
+  // Modal
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   // Movie details fetch
   // eslint-disable-next-line no-unused-vars
   const [movieDetail, setMovieDetail] = useState({});
   const [streamingPlatforms, setStreamingPlatforms] = useState([]);
   const [recommendations, setRecommendations] = useState([]);
+  // eslint-disable-next-line no-unused-vars
+
   const movieId = useParams();
   // Gets the id of the movie
   const getMovie = async () => {
     const { data } = await axios.get(`https://api.themoviedb.org/3/movie/${movieId.id}?api_key=${process.env.REACT_APP_API_KEY}`);
+    console.log(movieId.id);
     setMovieDetail(data);
 
     const utellyUrl = `https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/idlookup?country=us&source_id=${movieId.id}&source=tmdb`;
@@ -64,14 +85,14 @@ export default function Details () {
     }
   };
   return (
-    <Container maxWidth={1200}>
+    <Container maxWidth='1200px'>
       <Card sx={{
         display: 'flex',
         padding: '20px'
       }}>
         <CardActionArea>
           <Box sx={{ display: 'flex' }}>
-            <Paper sx={{ display: 'flex-start', height: '620px', borderRadius: '10px' }}>
+            <Paper sx={{ display: 'flex-start', height: '670px', borderRadius: '10px' }}>
               <CardMedia
                 component="img"
                 image={`${img500}/${poster_path}`}
@@ -96,6 +117,29 @@ export default function Details () {
                   {release_date}
                 </Typography>
               </Box>
+              <ThemeProvider theme={darkTheme}>
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingTop: '10px' }}>
+                  <Button
+                    variant='outlined'
+                    color='dark'
+                    endIcon={<PlayArrowIcon/>}
+                    onClick={handleOpenModal}
+                  >
+                    Watch a trailer
+                  </Button>
+                  <Modal
+                    open={openModal}
+                    onClose={handleCloseModal}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    sx={{ width: 'auto', height: 800, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                  >
+                    <Box sx={{ width: 700, height: 400, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <Trailer movieId={movieId.id}/>
+                    </Box>
+                  </Modal>
+                </Box>
+              </ThemeProvider>
             </Paper>
             <Box>
               <Typography
@@ -155,7 +199,7 @@ export default function Details () {
                   <CardContent sx={{ display: 'flex', flexDirection: 'row' }}>
                     {recommendations.map((recommendation) => (
                       <Card key={recommendation.id} sx={{ padding: '0.5em', borderRadius: '10px', margin: '0.5em' }}>
-                        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/details/${recommendation.id}`}>
+                        <Link style={{ textDecoration: 'none', color: 'inherit' }} to={`/movies/${recommendation.id}`}>
                           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <CardMedia
                               component="img"
@@ -179,6 +223,16 @@ export default function Details () {
                   </CardContent>
                 </Card>
               </Box>
+              {/* <Box>
+                <Card>
+                  {movieVideo && movieVideo.map((vid) => (
+                    <CardMedia key={vid.id}>
+                      { vid.name }
+                    </CardMedia>
+                  ))
+                  }
+                </Card>
+              </Box> */}
             </Box>
           </Box>
         </CardActionArea>
